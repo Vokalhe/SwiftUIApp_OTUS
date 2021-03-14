@@ -15,6 +15,7 @@
 		03845A8525EC096600965299 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03845A8425EC096600965299 /* MainScreen.swift */; };
 		03845A8A25EC1DFC00965299 /* FoodScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03845A8925EC1DFC00965299 /* FoodScreen.swift */; };
 		03845A8D25EC1E0A00965299 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03845A8C25EC1E0A00965299 /* AboutScreen.swift */; };
+		BA04008D25FE59FF0077A695 /* MediaPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA04008C25FE59FF0077A695 /* MediaPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		03845A8425EC096600965299 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		03845A8925EC1DFC00965299 /* FoodScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodScreen.swift; sourceTree = "<group>"; };
 		03845A8C25EC1E0A00965299 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
+		BA04008C25FE59FF0077A695 /* MediaPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				03845A8425EC096600965299 /* MainScreen.swift */,
 				03845A8925EC1DFC00965299 /* FoodScreen.swift */,
 				03845A8C25EC1E0A00965299 /* AboutScreen.swift */,
+				BA04008C25FE59FF0077A695 /* MediaPickerView.swift */,
 				03845A7325EC071300965299 /* Assets.xcassets */,
 				03845A7825EC071300965299 /* Info.plist */,
 				03845A7525EC071300965299 /* Preview Content */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA04008D25FE59FF0077A695 /* MediaPickerView.swift in Sources */,
 				03845A8A25EC1DFC00965299 /* FoodScreen.swift in Sources */,
 				03845A8525EC096600965299 /* MainScreen.swift in Sources */,
 				03845A7225EC071100965299 /* ContentView.swift in Sources */,

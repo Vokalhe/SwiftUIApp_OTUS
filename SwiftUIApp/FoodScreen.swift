@@ -27,32 +27,25 @@ extension Food: Identifiable, Hashable {
 }
 
 struct FoodScreen: View {
-    @Binding var tabMainButton: Bool
-
-    @State private var isActiveCell: Bool = false
-    @State private var favesShowed: Bool = false
-    @ObservedObject private var viewModel: FoodScreenViewModel = .init()
+    @EnvironmentObject var viewModel: FoodScreenViewModel
+    @EnvironmentObject var router: Router
+    @State var favesShowed: Bool = false
 
     var body: some View {
         NavigationView {
             List {
                 FilterView(favesShowed: $favesShowed)
                 
-                ForEach(viewModel.foods.indices) { index in
-                    let item = viewModel.foods[index]
-                    
+                ForEach(viewModel.foods) { item in
                     if !favesShowed || item.isFave {
-                        FoodListCell(index: index, food: item, isActiveCell: $isActiveCell)
+                        FoodListCell(food: item)
                     }
                 }
-                
-//                let food = viewModel.foods.count > 1 ? viewModel.foods[1] : Food(name: "Apple", emoji: "🍏", isFave: true)
-//                NavigationLink(
-//                    destination: FoodView(name: food.name, emoji: food.emoji),
-//                    isActive: $tabMainButton,
-//                    label: {})
             }
             .navigationTitle(Text("Foods"))
+            .overlay(NavigationLink(destination: FoodView(name: viewModel.foods[1].name,
+                                                          emoji: viewModel.foods[1].emoji),
+                                    isActive: $router.isAppleLinkShowed) {})
         }
     }
 }
@@ -73,21 +66,15 @@ private struct FoodView: View {
 }
 
 private struct FoodListCell: View {
-    let index: Int
     let food: Food
-    @Binding var isActiveCell: Bool
 
     var body: some View {
         HStack {
-            NavigationLink(destination: FoodView(name: food.name, emoji: food.emoji), isActive: $isActiveCell) {
+            NavigationLink(destination: FoodView(name: food.name, emoji: food.emoji)) {
                 Text(food.name)
             }
         }
         .contentShape(Rectangle())
-        .onTapGesture {
-            isActiveCell = true
-            print("___\(food.name)")
-        }
     }
 }
 
@@ -105,7 +92,7 @@ private struct FilterView: View {
 
 struct FoodScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FoodScreen(tabMainButton: .constant(false))
+        FoodScreen()
     }
 }
 

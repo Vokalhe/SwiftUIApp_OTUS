@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainScreen: View {
-    @Binding var tabMainButton: Bool
+    @EnvironmentObject var router: Router
 
     var body: some View {
         VStack {
@@ -16,16 +16,21 @@ struct MainScreen: View {
             Spacer().frame(height: 20)
             Divider()
             Spacer().frame(height: 20)
-            Button(action: { tabMainButton = true }) {
-                Text("Show Food Screen with the second item of list")
+            Button(action: {
+                router.selectionTab = 1
+                router.isAppleLinkShowed = true
+            }) {
+                Text("Show Apple Link")
             }
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
         }
-//        .onDisappear { tabMainButton = false }
     }
 }
 
 struct DashboardScreen_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen(tabMainButton: .constant(false))
+        MainScreen()
     }
 }

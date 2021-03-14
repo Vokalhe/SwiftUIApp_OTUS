@@ -18,3 +18,8 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+final class Router: ObservableObject {
+    @Published var selectionTab: Int = 1
+    @Published var isAppleLinkShowed: Bool = false
+}

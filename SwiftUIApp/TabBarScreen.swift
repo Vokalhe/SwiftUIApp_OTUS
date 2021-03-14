@@ -27,16 +27,15 @@ extension TabBarItem: Identifiable {
 }
 
 struct TabBarScreen: View {
-    @State private var selectionTab = 1
-    @State private var tabMainButton = false
     @ObservedObject private var viewModel: TabBarScreenViewModel = .init()
+    @EnvironmentObject var router: Router
 
     var body: some View {
-        TabView(selection: $selectionTab) {
+        TabView(selection: $router.selectionTab) {
             ForEach(viewModel.items) { item in
                 switch item.number {
                 case 0:
-                    MainScreen(tabMainButton: $tabMainButton)
+                    MainScreen()
                         .tabItem {
                             VStack {
                                 Text(item.name)
@@ -46,7 +45,7 @@ struct TabBarScreen: View {
                         }
                         .tag(item.number)
                 case 1:
-                    FoodScreen(tabMainButton: $tabMainButton)
+                    FoodScreen()
                         .tabItem {
                             HStack {
                                 Text(item.name)
@@ -71,11 +70,6 @@ struct TabBarScreen: View {
                 }
             }
         }
-        .onChange(of: tabMainButton, perform: { value in
-            if value {
-                selectionTab = 1
-            }
-        })
     }
 }
 

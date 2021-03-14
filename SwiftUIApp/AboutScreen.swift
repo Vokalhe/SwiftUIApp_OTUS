@@ -9,20 +9,41 @@ import SwiftUI
 
 struct AboutScreen: View {
     @State var showModalView: Bool = false
+    @State var showPickerView: Bool = false
+    @State var pickedMedia: [UIImage] = []
+    @State var imageView: Image = Image(systemName: "star")
 
     var body: some View {
         VStack {
+            Spacer().frame(height: 20)
             Divider()
-            Image(systemName: "star")
-                .font(Font.system(size: 100).weight(.light))
-            Spacer().frame(height: 80)
+            imageView
+                .resizable()
+                .frame(width: 150, height: 150)
+                .aspectRatio(contentMode: .fill)
+                .background(Color.green)
+            Spacer().frame(height: 50)
             Button(action: { showModalView.toggle() }) {
                 Text("Show Modal View")
             }
+            Spacer().frame(height: 50)
+            Button(action: { showPickerView.toggle() }) {
+                Text("Show Picker View")
+            }
             Divider()
-        }.sheet(isPresented: $showModalView, content: {
+            Spacer().frame(height: 20)
+        }
+        .sheet(isPresented: $showModalView, content: {
             ModalView()
         })
+        .sheet(isPresented: $showPickerView) {
+            MediaPickerView(pickedMedia: $pickedMedia)
+                .onDisappear {
+                    if let pickedImage = pickedMedia.first  {
+                        imageView = Image(uiImage: pickedImage)
+                    }
+                }
+        }
     }
 }
 

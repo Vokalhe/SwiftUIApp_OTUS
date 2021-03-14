@@ -12,6 +12,8 @@ struct SwiftUIAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(Router())
+                .environmentObject(FoodScreenViewModel())
         }
     }
 }
